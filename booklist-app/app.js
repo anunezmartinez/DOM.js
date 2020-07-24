@@ -81,7 +81,7 @@ class Store{
         localStorage.setItem('books', JSON.stringify(books));
     }
 
-    static removeBook(){
+    static removeBook(isbn){
         const books = Store.getBooks();
         books.forEach((book, index) =>{
             if(book.isbn === isbn){
@@ -130,4 +130,5 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
 //Event: Remove a book.
     document.getElementById('book-list').addEventListener('click', (e) =>{
         UI.deleteBook(e.target);
+        Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
     });
